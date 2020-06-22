@@ -1,5 +1,13 @@
 # myuw-notifications versions
 
+## 1.2.1
+
+### Fixed
+- Demo page buttons (get and add notifications) now work properly
+- Improved accessibility
+  - fixed low contrast when "All caught up"
+  - added outline/darker background for buttons when in focus state
+
 ## 1.2.0
 
 ### Added
