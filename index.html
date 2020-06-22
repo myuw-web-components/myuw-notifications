@@ -188,6 +188,10 @@
       localIds.splice(localIds.indexOf(event.detail.notificationId), 1);
     }
   }, false);
+
+  window.getNotifications = getNotifications;
+  window.addNotification = addNotification;
+  window.alertResult = alertResult;
 </script>
 
 <!-- App bar with bell button -->
