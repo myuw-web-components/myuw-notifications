@@ -111,21 +111,105 @@ export class MyUWNotifications extends HTMLElement {
             this event or else the window on click will always fire
             and the menu will never open.
         */
-        this.$bell.addEventListener('click', e => {
-            e.stopPropagation();
-            this.$list.classList.toggle('visible');
+      this.$bell.addEventListener('click', e => {
+        this.closeMenu(e);
+      });
 
-            // Focus the menu upon opening, blur on close
-            if (this.$list.classList.contains('visible')) {
-                this.$list.focus();
-                this.$list.removeAttribute('tabindex');
-                this.$bell.setAttribute('aria-expanded', 'true');
-            } else {
-                this.$list.blur();
-                this.$list.setAttribute('tabindex', '-1');
-                this.$bell.setAttribute('aria-expanded', 'false');
-            }
-        });
+      this.addEventListener('keydown', e => { this.handleKeydown(e) });
+    }
+
+    closeMenu(e) {
+      console.log('close');
+      e.stopPropagation();
+      this.$list.classList.toggle('visible');
+
+      // Focus the menu upon opening, blur on close
+      if (this.$list.classList.contains('visible')) {
+        this.$list.focus();
+        this.$list.removeAttribute('tabindex');
+        this.$bell.setAttribute('aria-expanded', 'true');
+      } else {
+        this.$list.blur();
+        this.$list.setAttribute('tabindex', '-1');
+        this.$bell.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    /**
+     * Build an array of the focusable elements within the profile menu, with the Logout link and profile button.
+     *
+     * @returns {Array<Element>}
+     */
+    getFocusableElements() {
+      this.contentSlotElement = Array.from(this.shadowRoot.querySelectorAll('myuw-notification[slot=myuw-notification-items]'));
+      console.log(this.contentSlotElement);
+      const focusableElements = this.contentSlotElement.reduce(
+        (agg, node) => {
+          node.shadowRoot.querySelectorAll("li").forEach(each => agg.push(each))
+          return agg;
+        },
+        []
+      );
+      focusableElements.unshift(this.$seeAllLink);
+      focusableElements.push(this.$bell);
+      // console.log(focusableElements);
+      return focusableElements;
+    }
+
+    /**
+     * Focus the next item in menu, cycling around to the first
+     */
+    focusNext() {
+      console.log('next');
+      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
+      const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
+      if (focusedIndex === this.focusableElements.length - 1 || focusedIndex === -1) {
+        this.focusableElements[0].focus();
+      }
+      else {
+        this.focusableElements[focusedIndex + 1].focus();
+      }
+    }
+
+    /**
+     * Focus the previous item in menu, cycling around to the last
+     */
+    focusPrevious() {
+      console.log('prev');
+      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
+      const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
+      if (focusedIndex === 0 || focusedIndex === -1) {
+        this.focusableElements[this.focusableElements.length - 1].focus();
+      }
+      else {
+        this.focusableElements[focusedIndex - 1].focus();
+      }
+    }
+
+    handleKeydown(event) {
+      switch (event.key) {
+        default:
+          return; // let unhandled keys propogate
+        case 'Escape':
+          console.log('esc');
+          this.closeMenu(event);
+          break;
+        // case 'Tab':
+        //   console.log('tab');
+        //   this.closeMenu(event);
+        //   break;
+        case 'ArrowDown':
+          console.log('down');
+          this.focusNext();
+          break;
+        case 'ArrowUp':
+          console.log('up');
+          this.focusPrevious();
+          break;
+      }
+      event.stopPropagation();
     }
     
     /**
