@@ -1,5 +1,13 @@
 # myuw-notifications versions
 
+## 1.3.0
+
+### Added
+- Keyboard event handling, allow focusing on the next or previous element
+
+### Fixed
+- Run `npm audit fix`, fixing some vulnerabilities in node modules
+
 ## 1.2.1
 
 ### Fixed
