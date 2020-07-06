@@ -115,8 +115,6 @@ export class MyUWNotifications extends HTMLElement {
     }
 
     closeMenu(e) {
-      console.log('close');
-
       /*      
           We need to make sure that we stop propagation on
           this event or else the window on click will always fire
@@ -144,7 +142,6 @@ export class MyUWNotifications extends HTMLElement {
      */
     getFocusableElements() {
       this.contentSlotElement = Array.from(this.shadowRoot.querySelectorAll('myuw-notification[slot=myuw-notification-items]'));
-      console.log(this.contentSlotElement);
       const focusableElements = this.contentSlotElement.reduce(
         (agg, node) => {
           node.shadowRoot.querySelectorAll("li").forEach(each => agg.push(each))
@@ -154,7 +151,6 @@ export class MyUWNotifications extends HTMLElement {
       );
       focusableElements.unshift(this.$seeAllLink);
       focusableElements.push(this.$bell);
-      // console.log(focusableElements);
       return focusableElements;
     }
 
@@ -162,7 +158,6 @@ export class MyUWNotifications extends HTMLElement {
      * Focus the next item in menu, cycling around to the first
      */
     focusNext() {
-      console.log('next');
       this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
@@ -178,7 +173,6 @@ export class MyUWNotifications extends HTMLElement {
      * Focus the previous item in menu, cycling around to the last
      */
     focusPrevious() {
-      console.log('prev');
       this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
@@ -195,19 +189,12 @@ export class MyUWNotifications extends HTMLElement {
         default:
           return; // let unhandled keys propogate
         case 'Escape':
-          console.log('esc');
           this.closeMenu(event);
           break;
-        // case 'Tab':
-        //   console.log('tab');
-        //   this.closeMenu(event);
-        //   break;
         case 'ArrowDown':
-          console.log('down');
           this.focusNext();
           break;
         case 'ArrowUp':
-          console.log('up');
           this.focusPrevious();
           break;
       }
