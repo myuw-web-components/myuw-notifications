@@ -105,11 +105,7 @@ export class MyUWNotifications extends HTMLElement {
         });
 
         /*
-            Add an on-click event to the bell button
-
-            We need to make sure that we stop propagation on
-            this event or else the window on click will always fire
-            and the menu will never open.
+            Add an on-click event to the bell button.
         */
       this.$bell.addEventListener('click', e => {
         this.closeMenu(e);
@@ -120,6 +116,12 @@ export class MyUWNotifications extends HTMLElement {
 
     closeMenu(e) {
       console.log('close');
+
+      /*      
+          We need to make sure that we stop propagation on
+          this event or else the window on click will always fire
+          and the menu will never open.
+      */
       e.stopPropagation();
       this.$list.classList.toggle('visible');
 
