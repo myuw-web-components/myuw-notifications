@@ -32,7 +32,7 @@ document.dispatchEvent(new CustomEvent('myuw-has-notifications', {
   detail: {
     notifications: [yourNotificationsArray]
   }
-});
+}));
 ```
 
 *Note: The component includes a CustomEvent polyfill for browsers that don't already support them*
