@@ -44,7 +44,7 @@ A single "notification" object must contain the following properties:
 ```js
 {
   "id": "",
-  "title:" "",
+  "title": "",
   "actionButton": {
     "label": "",
     "url": ""
