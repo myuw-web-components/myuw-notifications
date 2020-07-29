@@ -72,6 +72,10 @@ export class MyUWNotifications extends HTMLElement {
             // Remove notification
             var index = this.$notificationIds.indexOf(event.detail.notificationId);
             this.$notificationIds.splice(index, 1);
+            // Remove from DOM, if necessary
+            if (event.detail.dismissedFromOutside) {
+              this.$list.removeChild(this.$list.getElementsByTagName('myuw-notification')[index]);
+            }
             // Update for empty state
             if (this.$notificationIds.length <= 0) {
               this.$emptyState.classList.remove('hidden');

@@ -1,5 +1,10 @@
 # myuw-notifications versions
 
+## 1.3.1
+
+### Fixed
+- Removing notification from DOM when dismissed from outside of the component
+
 ## 1.3.0
 
 ### Added

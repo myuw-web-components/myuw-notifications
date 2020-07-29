@@ -70,6 +70,8 @@ document.addEventListener('myuw-notification-dismissed', (event) => {
 }, false);
 ```
 
+In addition, notifications can be dimissed by dispatching a `myuw-notification-dismissed` event with the field `event.detail.dismissedFromOutside` set to `true`, and `event.detail.notificationId` set to id of the notification you want to dismiss.
+
 ### Configurable attributes
 
 - **see-all-url**: If this optional attribute is provided, the component will display a "See all" link in the title row of the notifications list.
