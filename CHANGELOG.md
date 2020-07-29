@@ -1,5 +1,10 @@
 # myuw-notifications versions
 
+## 1.3.2
+
+### Added
+- Automatically close the notifications menu when tabbed outside of it
+
 ## 1.3.1
 
 ### Fixed
