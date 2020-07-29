@@ -115,6 +115,8 @@ export class MyUWNotifications extends HTMLElement {
         this.closeMenu(e);
       });
 
+      window.addEventListener('keydown', e => { this.handleKeydownOutsideComponent(e) });
+      
       this.addEventListener('keydown', e => { this.handleKeydown(e) });
     }
 
@@ -188,6 +190,21 @@ export class MyUWNotifications extends HTMLElement {
       }
     }
 
+    /**
+     * Close menu if current focused (tabbed) element is outside the component
+     */
+    autoCloseMenu(event) {
+      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
+      const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
+      if ( focusedIndex == -1 // only close when current focused (tabbed) element is outside the component
+        && !["BODY", "MYUW-NOTIFICATIONS"].includes(document.activeElement.nodeName) // edge cases where we don't want to close the menu
+        && this.$list.classList.contains('visible') // only close when the menu is open
+      ){
+        this.closeMenu(event);
+      }
+    }
+
     handleKeydown(event) {
       switch (event.key) {
         default:
@@ -200,6 +217,17 @@ export class MyUWNotifications extends HTMLElement {
           break;
         case 'ArrowUp':
           this.focusPrevious();
+          break;
+      }
+      event.stopPropagation();
+    }
+
+    handleKeydownOutsideComponent(event) {
+      switch (event.key) {
+        default:
+          return; // let unhandled keys propogate
+        case 'Tab':
+          this.autoCloseMenu(event);
           break;
       }
       event.stopPropagation();
