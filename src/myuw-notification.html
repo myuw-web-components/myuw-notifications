@@ -129,17 +129,19 @@
 
   #dismiss:focus {
     background-color: var( --myuw-icon-button-hover-bg, rgba(0,0,0,0.2) );
+    outline: 2px solid #5e9ed6;
+    outline: -webkit-focus-ring-color auto 5px;
   }
 
 </style>
   
-<li role="menuitem" id="notification" tabindex=-1>
+<div role="listitem" id="notification">
   <div id="content">
     <p id="body"></p>
     <div id="actions">
-      <a id="action" target="_blank" rel="noopener noreferrer" hidden></a>
-      <a id="moreInfo" target="_blank" rel="noopener noreferrer" hidden></a>
-      <a id="confirm" target="_blank" rel="noopener noreferrer" hidden></a>
+      <a id="action" target="_blank" rel="noopener noreferrer"></a>
+      <a id="moreInfo" target="_blank" rel="noopener noreferrer"></a>
+      <a id="confirm" target="_blank" rel="noopener noreferrer"></a>
     </div>
   </div>
   <button id="dismiss" aria-label="dismiss notification">
@@ -148,4 +150,4 @@
       <path d="M0 0h24v24H0z" fill="none"/>
     </svg>
   </button>
-</li>
+</div>
