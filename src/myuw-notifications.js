@@ -115,7 +115,8 @@ export class MyUWNotifications extends HTMLElement {
         this.closeMenu(e);
       });
 
-      window.addEventListener('keydown', e => { this.handleKeydownOutsideComponent(e) });
+      // Changed to 'keyup' to fix incorrect activeElement reference
+      window.addEventListener('keyup', e => { this.handleKeydownOutsideComponent(e) });
       
       this.addEventListener('keydown', e => { this.handleKeydown(e) });
     }
@@ -197,7 +198,6 @@ export class MyUWNotifications extends HTMLElement {
       this.focusableElements = this.getFocusableElements();
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
-      console.log(document.activeElement.nodeName);
       if ( focusedIndex == -1 // only close when current focused (tabbed) element is outside the component
         && !["BODY", "MYUW-NOTIFICATIONS"].includes(document.activeElement.nodeName) // edge cases where we don't want to close the menu
         && this.$list.classList.contains('visible') // only close when the menu is open
