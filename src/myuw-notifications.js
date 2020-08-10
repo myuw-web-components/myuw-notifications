@@ -164,7 +164,7 @@ export class MyUWNotifications extends HTMLElement {
      * Focus the next item in menu, cycling around to the first
      */
     focusNext() {
-      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      this.focusableElements = this.getFocusableElements();
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
       if (focusedIndex === this.focusableElements.length - 1 || focusedIndex === -1) {
@@ -179,7 +179,7 @@ export class MyUWNotifications extends HTMLElement {
      * Focus the previous item in menu, cycling around to the last
      */
     focusPrevious() {
-      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      this.focusableElements = this.getFocusableElements();
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
       if (focusedIndex === 0 || focusedIndex === -1) {
@@ -194,9 +194,10 @@ export class MyUWNotifications extends HTMLElement {
      * Close menu if current focused (tabbed) element is outside the component
      */
     autoCloseMenu(event) {
-      this.focusableElements = !this.focusableElements ? this.getFocusableElements() : this.focusableElements;
+      this.focusableElements = this.getFocusableElements();
       const focusedElement = this.isSameNode(document.activeElement) ? this.shadowRoot.activeElement : document.activeElement;
       const focusedIndex = this.focusableElements.indexOf(focusedElement.shadowRoot ? focusedElement.shadowRoot.querySelector("li") : focusedElement);
+      console.log(document.activeElement.nodeName);
       if ( focusedIndex == -1 // only close when current focused (tabbed) element is outside the component
         && !["BODY", "MYUW-NOTIFICATIONS"].includes(document.activeElement.nodeName) // edge cases where we don't want to close the menu
         && this.$list.classList.contains('visible') // only close when the menu is open
