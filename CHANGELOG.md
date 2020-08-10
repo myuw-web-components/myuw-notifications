@@ -5,6 +5,9 @@
 ### Added
 - Automatically close the notifications menu when tabbed outside of it
 
+### Fixed
+- Access elements within notifications using screen reader
+
 ## 1.3.1
 
 ### Fixed

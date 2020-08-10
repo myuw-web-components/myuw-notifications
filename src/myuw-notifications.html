@@ -149,16 +149,15 @@
         <span id="count" class="hidden"></span>
     </button>
 
-    <ul id="list"
-        role="menu"
-        tabindex="-1"
+    <div id="list"
+        role="list"
         aria-labelledby="bell-button">
         <div id="see-all">
           <h1>Notifications</h1>
         </div>
         <!-- empty state -->
-        <li id="empty-state">
+        <div id="empty-state">
           <slot name="myuw-notifications-empty"></slot>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
