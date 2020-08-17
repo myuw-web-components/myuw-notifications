@@ -1,5 +1,10 @@
 # myuw-notifications versions
 
+## 1.3.3
+
+### Fixed
+- Hiding empty buttons in a notification
+
 ## 1.3.2
 
 ### Added
