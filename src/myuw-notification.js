@@ -53,18 +53,24 @@ export class MyUWNotification extends HTMLElement {
       this.$actionButton.innerText = this.actionLabel;
       this.$actionButton.setAttribute('href', this.actionUrl);
       this.$actionButton.hidden = false;
+    } else {
+      this.$actionButton.hidden = true;
     }
 
     if (this.infoUrl && this.infoLabel) {
       this.$infoButton.innerText = this.infoLabel;
       this.$infoButton.setAttribute('href', this.infoUrl);
       this.$infoButton.hidden = false;
+    } else {
+      this.$infoButton.hidden = true;
     }
 
     if (this.confirmUrl && this.confirmLabel) {
       this.$confirmButton.innerText = this.confirmLabel;
       this.$confirmButton.setAttribute('href', this.confirmUrl);
       this.$confirmButton.hidden = false;
+    } else {
+      this.$confirmButton.hidden = true;
     }
 
     // Bind dismiss event using the notification's id value
