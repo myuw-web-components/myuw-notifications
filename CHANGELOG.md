@@ -3,6 +3,7 @@
 ## 1.3.3
 
 ### Fixed
+- Properly display notifications count
 - Hiding empty buttons in a notification
 
 ## 1.3.2
