@@ -32,6 +32,7 @@ export class MyUWNotifications extends HTMLElement {
         // Element variables
         this.$list                = this.shadowRoot.getElementById('list');
         this.$bell                = this.shadowRoot.getElementById('bell-button');
+        this.$bellIcon            = this.shadowRoot.getElementById('bell-button-icon');
         this.$itemSlot            = this.shadowRoot.querySelector('slot[name="myuw-notification-items"]');
         this.$count               = this.shadowRoot.getElementById('count');
         this.$wrapper             = this.shadowRoot.getElementById('wrapper');
@@ -40,7 +41,6 @@ export class MyUWNotifications extends HTMLElement {
         this.$emptyState          = this.shadowRoot.getElementById('empty-state');
         this.$notificationIds     = [];
         this.$notificationsCount  = this.$notificationIds.length;
-
         // Display "see all" only if URL attribute was provided
         if (this['see-all-url']) {
           this.$seeAllLink.setAttribute('href', this['see-all-url']);
@@ -72,6 +72,9 @@ export class MyUWNotifications extends HTMLElement {
             // Remove notification
             var index = this.$notificationIds.indexOf(event.detail.notificationId);
             this.$notificationIds.splice(index, 1);
+            this.$count.innerHTML = this.$notificationIds.length;
+            this.$bell.setAttribute('aria-label', 'Notifications list. You have ' + this.$notificationIds.length + ' notifications.');
+
             // Remove from DOM, if necessary
             if (event.detail.dismissedFromOutside) {
               this.$list.removeChild(this.$list.getElementsByTagName('myuw-notification')[index]);
@@ -79,6 +82,10 @@ export class MyUWNotifications extends HTMLElement {
             // Update for empty state
             if (this.$notificationIds.length <= 0) {
               this.$emptyState.classList.remove('hidden');
+              this.$count.classList.add('hidden');
+              this.$bell.setAttribute('aria-label', 'Notifications list. All caught up!');
+              this.$bellIcon.innerHTML = `
+                <svg id="bell-icon" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>`;
             }
           }
         }, false);
@@ -122,7 +129,7 @@ export class MyUWNotifications extends HTMLElement {
     }
 
     closeMenu(e) {
-      /*      
+      /*
           We need to make sure that we stop propagation on
           this event or else the window on click will always fire
           and the menu will never open.
@@ -246,6 +253,9 @@ export class MyUWNotifications extends HTMLElement {
     componentReady(notifications) {
       // Check for notifications
       if (typeof notifications === 'object' && notifications.length > 0) {
+        this.$count.innerHTML = notifications.length;
+        this.$count.classList.remove('hidden');
+        this.$bell.setAttribute('aria-label', 'Notifications list. You have ' + notifications.length + ' notifications.');
 
         var notificationItem;
         var notificationContentWrapper;
@@ -314,7 +324,7 @@ export class MyUWNotifications extends HTMLElement {
         }
 
         // Update to non-empty
-        this.$bell.innerHTML = `
+        this.$bellIcon.innerHTML = `
           <svg id="bell-icon" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
           </svg>`;
