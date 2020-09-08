@@ -1,5 +1,11 @@
 # myuw-notifications versions
 
+## 1.3.4
+
+### Added
+- On mobile views, redirect to See-all page, if the link was provided, rather than display the modal.
+- Update modal styles on mobile views, if displayed
+
 ## 1.3.3
 
 ### Fixed
