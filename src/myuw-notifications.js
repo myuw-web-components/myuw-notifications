@@ -119,7 +119,13 @@ export class MyUWNotifications extends HTMLElement {
             Add an on-click event to the bell button.
         */
       this.$bell.addEventListener('click', e => {
-        this.closeMenu(e);
+
+      // On mobile views, redirect to See-all page, if the link was provided
+      if (window.matchMedia("(max-width: 460px)").matches && this['see-all-url']) {
+        window.history.pushState('notifications', 'Notifications', this['see-all-url']);
+       } else {
+         this.closeMenu(e);
+       }
       });
 
       // Changed to 'keyup' to fix incorrect activeElement reference
