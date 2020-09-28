@@ -1,6 +1,6 @@
 {
   "name": "@myuw-web-components/myuw-notifications",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "Web component that provides an icon button and menu/list of notifications",
   "module": "dist/myuw-notifications.min.mjs",
   "browser": "dist/myuw-notifications.min.js",

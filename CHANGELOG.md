@@ -1,5 +1,10 @@
 # myuw-notifications versions
 
+## 1.3.5
+
+### Fixed
+- Check for notifications priority status
+
 ## 1.3.4
 
 ### Added

@@ -34,6 +34,7 @@ export class MyUWNotification extends HTMLElement {
   connectedCallback() {
     this.notificationId = this.getAttribute('myuw-notification-id') || null;
     this.body = this.getAttribute('body') || null;
+    this.priorityMessage = this.getAttribute('priority') || null;
     this.actionUrl = this.getAttribute('action-button-url') || null;
     this.actionLabel = this.getAttribute('action-button-label') || null;
     this.infoUrl = this.getAttribute('info-button-url') || null;
@@ -46,8 +47,13 @@ export class MyUWNotification extends HTMLElement {
     this.$actionButton    = this.shadowRoot.querySelector('a#action');
     this.$infoButton      = this.shadowRoot.querySelector('a#moreInfo');
     this.$confirmButton   = this.shadowRoot.querySelector('a#confirm');
+    this.$priorityNotification = this.shadowRoot.getElementById('notification__priority-message');
 
     this.$body.innerText = this.body;
+
+    if (this.priorityMessage) {
+      this.$priorityNotification.classList.remove('hidden');
+    }
 
     if (this.actionUrl && this.actionLabel) {
       this.$actionButton.innerText = this.actionLabel;

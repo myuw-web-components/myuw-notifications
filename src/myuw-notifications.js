@@ -28,7 +28,6 @@ export class MyUWNotifications extends HTMLElement {
         // Get all attributes
         this['see-all-url']       = this.getAttribute('see-all-url');
         this['limit']             = this.getAttribute('limit') || 999;
-
         // Element variables
         this.$list                = this.shadowRoot.getElementById('list');
         this.$bell                = this.shadowRoot.getElementById('bell-button');
@@ -47,7 +46,6 @@ export class MyUWNotifications extends HTMLElement {
           this.$seeAllLink.innerText = "See all";
           this.$seeAllWrapper.appendChild(this.$seeAllLink);
         }
-
         /**
          * Listen for custom event to indicate there are notifications ready to display
          * @param {CustomEvent} event Event that should pass notification information to display
@@ -271,7 +269,7 @@ export class MyUWNotifications extends HTMLElement {
         var infoButton;
         var dismissButton;
         var limitIncrement = 0;
-        var limit = this['limit']; 
+        var limit = this['limit'];
 
         // Console log wrapper so debug message is safely posted 
         // if the browser doesn't have a console
@@ -305,9 +303,16 @@ export class MyUWNotifications extends HTMLElement {
             notificationItem.setAttribute('body', notifications[i].title);
           }
 
-          /* 
+          /*
+            Check for notification priority
+          */
+          if (notifications[i].priority) {
+            notificationItem.setAttribute('priority', notifications[i].priority);
+          }
+
+          /*
             Assemble action buttons row 
-          */ 
+          */
           if (notifications[i].actionButton) {
             notificationItem.setAttribute('action-button-url', notifications[i].actionButton.url);
             notificationItem.setAttribute('action-button-label', notifications[i].actionButton.label);
