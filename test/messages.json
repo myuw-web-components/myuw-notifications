@@ -3,7 +3,6 @@
     {
       "id": "1",
       "title": "This is a test notification only visible to portal administrators.",
-      "descriptionShort": "This notification uses the new 'message' data model.",
       "messageType": "notification",
       "goLiveDate": "2017-08-14T10:50",
       "expireDate": "2018-08-14T10:50",
@@ -27,7 +26,6 @@
     {
       "id": "2",
       "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
-      "descriptionShort": null,
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
@@ -54,7 +52,6 @@
     {
       "id": "3",
       "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
-      "descriptionShort": null,
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
@@ -81,7 +78,6 @@
     {
       "id": "4",
       "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
-      "descriptionShort": null,
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
