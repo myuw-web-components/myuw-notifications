@@ -6,7 +6,6 @@
       "messageType": "notification",
       "goLiveDate": "2017-08-14T10:50",
       "expireDate": "2018-08-14T10:50",
-      "featureImageUrl": null,
       "priority": null,
       "audienceFilter": {
         "groups": ["Portal Administrators"]
@@ -29,7 +28,6 @@
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
-      "featureImageUrl": null,
       "priority": null,
       "audienceFilter": {
         "groups": ["Users - Student SSN Update"]
@@ -55,7 +53,6 @@
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
-      "featureImageUrl": null,
       "priority": null,
       "audienceFilter": {
         "groups": ["Users - Student SSN Update"]
@@ -81,7 +78,6 @@
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
-      "featureImageUrl": null,
       "priority": null,
       "audienceFilter": {
         "groups": ["Users - Student SSN Update"]
