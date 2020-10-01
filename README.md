@@ -1,6 +1,20 @@
 # myuw-notifications
 
-## Getting started
+## Try it out
+
+Clone this repository.
+
+Run
+
+`npm run start`
+
+from the root of this repository.
+
+Node will build the project, start a demo server, and open your web browser to
+a demo page. Then you can use the buttons and form on the page to demo how
+notifications present.
+
+## Using myuw-notifications in a website or web application
 
 ### Importing the component into the page
 
