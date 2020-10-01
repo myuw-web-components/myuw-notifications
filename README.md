@@ -2,15 +2,23 @@
 
 ## Getting started
 
-Import the component as follows:
+### Importing the component into the page
+
+Import the latest version of the component:
 
 ```html
 <!-- import the module -->
-<script type="module" src="https://cdn.my.wisc.edu/@myuw-web-components/myuw-notifications@latest/myuw-notifications.min.mjs"></script>
+<script type="module" src="https://unpkg.com//@myuw-web-components/myuw-notifications@latest/dist/myuw-notifications.min.mjs"></script>
 
 <!-- fallback for browsers without ES2015 module support -->
-<script nomodule src="https://cdn.my.wisc.edu/@myuw-web-components/myuw-notifications@latest/myuw-notifications.min.js"></script>
+<script nomodule src="https://unpkg.com/@myuw-web-components/myuw-notifications@latest/dist/myuw-notifications.min.js"></script>
+```
 
+### Using the component
+
+And then use the component:
+
+```html
 <myuw-notifications
   slot="myuw-notifications"
   limit="3"
@@ -19,8 +27,6 @@ Import the component as follows:
   <span slot="myuw-notifications-empty">All caught up!</span>
 </myuw-notifications>
 ```
-
-_Note:_ The evergreen "latest" version can be used for convenience, but in production settings it is recommended to use the latest [release version](https://github.com/myuw-web-components/myuw-notifications/releases) specifically, and upgrade only after testing!
 
 ### Displaying notifications
 
@@ -84,3 +90,20 @@ In addition, notifications can be dimissed by dispatching a `myuw-notification-d
 ### CSS Variables
 
 Check out the [source HTML files](src/myuw-notifications.html) to see all the CSS variables you can override.
+
+## Using in production
+
+The evergreen "latest" version is convenient for development,
+but for stability in production settings instead use specific
+[release versions](https://www.npmjs.com/package/@myuw-web-components/myuw-notifications?activeTab=versions)
+and upgrade intentionally.
+
+Instead, import a specific version:
+
+```html
+<!-- import the module -->
+<script type="module" src="https://unpkg.com//@myuw-web-components/myuw-notifications@1.3.4/dist/myuw-notifications.min.mjs"></script>
+
+<!-- fallback for browsers without ES2015 module support -->
+<script nomodule src="https://unpkg.com/@myuw-web-components/myuw-notifications@1.3.4/dist/myuw-notifications.min.js"></script>
+```
