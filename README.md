@@ -73,8 +73,8 @@ A single "notification" object must contain the following properties:
 ```
 
 *Notes:*
-- *The object corresponding to the `notifications` property **MUST** be an array, even if you're only displaying a single notification*
-- *The component expects a data model similar to the one currently used in MyUW. Efforts to make this more generic or to allow adopters to establish their own data models are in progress.*
++ *The object corresponding to the `notifications` property **MUST** be an array, even if you're only displaying a single notification*
++ *The component expects a data model similar to the one currently used in MyUW. Efforts to make this more generic or to allow adopters to establish their own data models are in progress.*
 
 ### Dismissing notifications
 
@@ -94,12 +94,12 @@ In addition, notifications can be dimissed by dispatching a `myuw-notification-d
 
 ### Configurable attributes
 
-- **see-all-url**: If this optional attribute is provided, the component will display a "See all" link in the title row of the notifications list.
-- **limit**: Limits the number of notifications displayed. If unset, notifications that exceed the height limit of the menu can be seen via scrolling.
++ **see-all-url**: If this optional attribute is provided, the component will display a "See all" link in the title row of the notifications list.
++ **limit**: Limits the number of notifications displayed. If unset, notifications that exceed the height limit of the menu can be seen via scrolling.
 
 ### Slots
 
-- **myuw-notifications-empty**: Use this slot to insert markup you would like your users to see when there are no new notifications to view.
++ **myuw-notifications-empty**: Use this slot to insert markup you would like your users to see when there are no new notifications to view.
 
 ### CSS Variables
 
