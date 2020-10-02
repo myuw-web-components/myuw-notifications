@@ -2,7 +2,7 @@
   "messages": [
     {
       "id": "1",
-      "title": "This is a test notification only visible to portal administrators.",
+      "title": "This is a test notification with just an action button.",
       "messageType": "notification",
       "goLiveDate": "2017-08-14T10:50",
       "expireDate": "2018-08-14T10:50",
@@ -24,11 +24,11 @@
     },
     {
       "id": "2",
-      "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
+      "title": "Another demo notification, with its priority set to high",
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
-      "priority": null,
+      "priority": "high",
       "audienceFilter": {
         "groups": ["Users - Student SSN Update"]
       },
@@ -48,8 +48,8 @@
       "confirmButton": null
     },
     {
-      "id": "3",
-      "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
+      "id": "notification-ids-are-strings-not-integers",
+      "title": "An additional notification with both an action and a more info button",
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
@@ -74,7 +74,7 @@
     },
     {
       "id": "4",
-      "title": "Your Social Security Number (SSN) in the Student Information System is invalid or missing. Please update your SSN in the Personal Information section in the Student Center.",
+      "title": "One last notification for demo purposes",
       "messageType": "notification",
       "goLiveDate": null,
       "expireDate": null,
