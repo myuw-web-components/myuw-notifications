@@ -3,6 +3,7 @@
 ## 1.3.5 - not yet released
 
 + Reflect priority status on notifications shown in the modal
++ Updated dependencies via `npm update`
 
 ## 1.3.4 - 2020-09-08
 
