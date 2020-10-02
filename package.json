@@ -9,7 +9,6 @@
     "watch": "rollup -c -w",
     "serve": "live-server --port=4200",
     "start": "run-p watch serve",
-    "sonar": "sonar-scanner",
     "prepare": "npm run build"
   },
   "repository": {
