@@ -1,6 +1,6 @@
 # myuw-notifications versions
 
-## 1.3.5 - not yet released
+## 1.4.0 - not yet released
 
 + Reflect priority status on notifications shown in the modal
 + Updated dependencies via `npm update`
