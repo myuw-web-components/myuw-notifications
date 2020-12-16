@@ -4,6 +4,11 @@
 
 + (No changes yet.)
 
+## 1.4.1
+
+### Fixed
++ Remove excessive margin around the bell button
+
 ## 1.4.0 - 2020-10-02
 
 + Reflect priority status on notifications shown in the modal
