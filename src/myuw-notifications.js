@@ -32,6 +32,7 @@ export class MyUWNotifications extends HTMLElement {
         this.$list                = this.shadowRoot.getElementById('list');
         this.$bell                = this.shadowRoot.getElementById('bell-button');
         this.$bellIcon            = this.shadowRoot.getElementById('bell-button-icon');
+        this.$backdrop            = this.shadowRoot.getElementById('myuw-notifications-backdrop');
         this.$itemSlot            = this.shadowRoot.querySelector('slot[name="myuw-notification-items"]');
         this.$count               = this.shadowRoot.getElementById('count');
         this.$wrapper             = this.shadowRoot.getElementById('wrapper');
@@ -60,8 +61,8 @@ export class MyUWNotifications extends HTMLElement {
         }, false);
 
         /**
-         * Listen for custom event from child component(s) indicating that a notification's 
-         * "dismiss" button was clicked. Remove the notification with received ID from 
+         * Listen for custom event from child component(s) indicating that a notification's
+         * "dismiss" button was clicked. Remove the notification with received ID from
          * internal list.
          */
         document.addEventListener('myuw-notification-dismissed', (event) => {
@@ -72,7 +73,6 @@ export class MyUWNotifications extends HTMLElement {
             this.$notificationIds.splice(index, 1);
             this.$count.innerHTML = this.$notificationIds.length;
             this.$bell.setAttribute('aria-label', 'Notifications list. You have ' + this.$notificationIds.length + ' notifications.');
-
             // Remove from DOM, if necessary
             if (event.detail.dismissedFromOutside) {
               this.$list.removeChild(this.$list.getElementsByTagName('myuw-notification')[index]);
@@ -98,6 +98,7 @@ export class MyUWNotifications extends HTMLElement {
                 this.$list.classList.remove('visible');
                 this.$bell.setAttribute('aria-expanded', 'false');
                 this.$list.setAttribute('tabindex', '-1');
+                this.$backdrop.hidden=true;
             }
         });
 
@@ -128,7 +129,7 @@ export class MyUWNotifications extends HTMLElement {
 
       // Changed to 'keyup' to fix incorrect activeElement reference
       window.addEventListener('keyup', e => { this.handleKeydownOutsideComponent(e) });
-      
+
       this.addEventListener('keydown', e => { this.handleKeydown(e) });
     }
 
@@ -140,9 +141,9 @@ export class MyUWNotifications extends HTMLElement {
       */
       e.stopPropagation();
       this.$list.classList.toggle('visible');
-
       // Focus the menu upon opening, blur on close
       if (this.$list.classList.contains('visible')) {
+        this.$backdrop.hidden=false;
         this.$list.focus();
         this.$list.removeAttribute('tabindex');
         this.$bell.setAttribute('aria-expanded', 'true');
@@ -150,6 +151,7 @@ export class MyUWNotifications extends HTMLElement {
         this.$list.blur();
         this.$list.setAttribute('tabindex', '-1');
         this.$bell.setAttribute('aria-expanded', 'false');
+        this.$backdrop.hidden=true;
       }
     }
 
@@ -244,15 +246,15 @@ export class MyUWNotifications extends HTMLElement {
       }
       event.stopPropagation();
     }
-    
+
     /**
-     * TODO: 
+     * TODO:
      *   - Update DOM in response to internal list changes, instead of directly translating
      *     received data into DOM elements
-     * 
+     *
      * Runs after component detects the 'myuw-has-notifications' event and receives
      * the required parameter
-     * @param {*} notifications 
+     * @param {*} notifications
      */
     componentReady(notifications) {
       // Check for notifications
@@ -260,7 +262,6 @@ export class MyUWNotifications extends HTMLElement {
         this.$count.innerHTML = notifications.length;
         this.$count.classList.remove('hidden');
         this.$bell.setAttribute('aria-label', 'Notifications list. You have ' + notifications.length + ' notifications.');
-
         var notificationItem;
         var notificationContentWrapper;
         var body;
@@ -271,7 +272,7 @@ export class MyUWNotifications extends HTMLElement {
         var limitIncrement = 0;
         var limit = this['limit'];
 
-        // Console log wrapper so debug message is safely posted 
+        // Console log wrapper so debug message is safely posted
         // if the browser doesn't have a console
         var log = Function.prototype.bind.call(console.debug, console);
 
@@ -283,12 +284,12 @@ export class MyUWNotifications extends HTMLElement {
           // If new unique id, add to internal list and DOM, or log a message and return
           if (this.$notificationIds.indexOf(notifications[i].id) === -1) {
             this.$notificationIds.push(notifications[i].id);
-          } else { 
-            // QUESTION: Is there a use case for instead broadcasting an event so the client 
+          } else {
+            // QUESTION: Is there a use case for instead broadcasting an event so the client
             // can respond to it (e.g. if new notifications are being added via GUI by a non-
             // expert)?
             log.apply(console, ['Received duplicate notification id']);
-            return; 
+            return;
           }
 
           /* Create elements that don't depend on data model for information */
@@ -296,7 +297,7 @@ export class MyUWNotifications extends HTMLElement {
           notificationItem.setAttribute('myuw-notification-id', notifications[i].id);
           notificationItem.setAttribute('slot', 'myuw-notification-items');
 
-          /* 
+          /*
             Set notification body
           */
           if (notifications[i].title) {
@@ -311,7 +312,7 @@ export class MyUWNotifications extends HTMLElement {
           }
 
           /*
-            Assemble action buttons row 
+            Assemble action buttons row
           */
           if (notifications[i].actionButton) {
             notificationItem.setAttribute('action-button-url', notifications[i].actionButton.url);
@@ -327,8 +328,8 @@ export class MyUWNotifications extends HTMLElement {
             notificationItem.setAttribute('confirm-button-url', notifications[i].confirmButton.url);
             notificationItem.setAttribute('confirm-button-label', notifications[i].confirmButton.label);
           }
-          
-          if (limitIncrement < limit) { 
+
+          if (limitIncrement < limit) {
             this.$list.appendChild(notificationItem);
             limitIncrement += 1;
           }
@@ -360,7 +361,7 @@ MyUWNotifications.template = (function template(src) {
   if (typeof window.CustomEvent === 'function') {
     return false;
   }
-  
+
   function CustomEvent (event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
     var evt = document.createEvent( 'CustomEvent' );
