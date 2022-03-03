@@ -2,7 +2,11 @@
 
 ## next - not yet released
 
-+ (No changes yet.)
+## 1.4.2
+
+### Added
+
+* Add invisible backdrop behind active notifications modal
 
 ## 1.4.1
 

@@ -62,7 +62,7 @@
   margin: var( --myuw-menu-margin, 0 );
   padding: var( --myuw-menu-padding, 0 );
   font-size: var( --myuw-font-size, 14px );
-  z-index: var( --myuw-menu-depth, 101 ); 
+  z-index: var( --myuw-menu-depth, 101 );
   max-height: var( --myuw-menu-height, 400px );
   overflow-y: scroll;
 
@@ -155,8 +155,23 @@
   }
 }
 
-</style>
+[hidden] {
+  display: none !important;
+}
 
+#myuw-notifications-backdrop {
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+</style>
+<div id="myuw-notifications-backdrop" hidden></div>
 <div id="wrapper">
     <button id="bell-button"
         aria-label="Notifications list. All caught up!"
