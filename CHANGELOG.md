@@ -2,6 +2,11 @@
 
 ## next - not yet released
 
+## 1.4.3
+
++ Remove references to Montserrat font
++ Increase font-size to min 16px
+
 ## 1.4.2
 
 ### Added
