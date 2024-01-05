@@ -2,6 +2,10 @@
 
 ## next - not yet released
 
+## 1.4.5
+
++ Update font-weight on the dialog
+
 ## 1.4.4
 
 + Remove references to Roboto and Arial fonts and replaced with Red Hat Display and Red Hat Text
