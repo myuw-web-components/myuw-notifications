@@ -1,5 +1,7 @@
 # myuw-notifications
 
+**`myuw-notifications` is not currently maintained.**
+
 ## Try it out
 
 Clone this repository.
